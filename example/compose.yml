@@ -1,6 +1,8 @@
 services:
   claude-code:
-    image: nezhar/claude-container:latest
+    build:
+      context: ..
+      dockerfile: Dockerfile
     user: "${UID:-1000}:${GID:-1000}"
     volumes:
       - ./workspace:/workspace

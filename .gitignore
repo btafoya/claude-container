@@ -1,3 +1,6 @@
 example/workspace/
 example/claude-config/
+workspace/
+claude-config/
+.env
 

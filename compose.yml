@@ -1,6 +1,18 @@
 services:
   claude-code:
-    image: nezhar/claude-container:${CLAUDE_CONTAINER_VERSION:-latest}
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - UBUNTU_USERNAME=${UBUNTU_USERNAME:-developer}
+        - UBUNTU_PASSWORD=${UBUNTU_PASSWORD:-changeme123}
+    ports:
+      - "3389:3389"  # RDP port
+      - "5173:5173"  # claudecodeui frontend (Vite)
+      - "3000:3000"  # claudecodeui backend
+    environment:
+      - DISPLAY=:1
+    volumes:
+      - ./workspace:/workspace
+    stdin_open: true
+    tty: true

@@ -101,7 +101,10 @@ done
 # Export environment variables for docker-compose
 export UBUNTU_USERNAME
 export UBUNTU_PASSWORD
-export UID=$(id -u)
+# UID is often readonly, so only set if not already set
+if [ -z "$UID" ]; then
+    export UID=$(id -u)
+fi
 export GID=$(id -g)
 
 # Execute commands
